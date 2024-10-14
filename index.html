@@ -32,14 +32,14 @@
                 <li><a href="#section4">What are the benefits of perceptual alignment?</a></li>
                 <li><a href="#section5">What are the limitations of perceptual alignment?</a></li>
                 <li><a href="#section6">Implications</a></li>
+                <li><a href="#section7">Models and code</a></li>
             </ul>
         </aside>
 
         <main>
             <h2 id="section1">Introduction</h2>
             <figure class="centered-image">
-              <img src="https://github.com/ssundaram21/ssundaram21.github.io/blob/master/figs/teaser5.jpg?raw=true" alt="Description of the image" class="section-image"  id="teaser">
-              <figcaption>Your image caption here (optional)</figcaption>
+              <img src="figs/teaser7.jpg" alt="Description of the image" class="section-image"  id="teaser">
           </figure>
 
             <p><em>What does it mean for machines to see the world as humans do?</em>
@@ -73,7 +73,7 @@
               such as color, style, pose, and object count.</p>
               <figure class="centered-image">
                 <img src="figs/data_examples.jpg" alt="Description of the image" class="datasets-im" id="datasets-im">
-                <figcaption>Your image caption here (optional)</figcaption>
+                <figcaption>Examples of triplets from different perceptual similarity datasets, and from ImageNet. In each triplet, the more similar image to the reference (middle) is highlighted.</figcaption>
             </figure>
               <p>More precisely: We formalize this dataset as  \(\mathcal{D}=\{(x, \tilde{x_0}, \tilde{x_1}), y\}\) where
               \(x\) is a reference image, and \(\tilde{x_0}\) and \(\tilde{x_1}\) are two variation images. The judgement 
@@ -98,7 +98,7 @@
 
               <figure class="centered-image">
                 <img src="figs/df2_full.jpg" alt="Description of the image" class="datasets-im">
-              <figcaption>Your image caption here (optional)</figcaption>
+              <figcaption>Change in performance from base models to human-aligned models (higher is better).</figcaption>
               </figure>
               
               <p>Interestingly, these retrieval capabilities are also useful for boosting the few-shot performance 
@@ -108,7 +108,7 @@
               
               <figure class="centered-image">
                 <img src="figs/rag.jpg" alt="Description of the image" class="datasets-im">
-              <figcaption>Your image caption here (optional)</figcaption>
+              <figcaption>OpenFlamingo results on classification datasets when augmenting the query with relevant examples, retrieved by base v. human-aligned models.</figcaption>
               </figure>
 
               <p>Another global understanding task we look at is <strong>counting</strong>. Across three different counting datasets,
@@ -116,23 +116,22 @@
               judgements to impact awareness of object count in a scene. </p>
               <figure class="centered-image">
                 <img src="figs/counting_full.jpg" alt="Description of the image" class="datasets-im">
-              <figcaption>Your image caption here (optional)</figcaption>
+              <figcaption>Change in performance from base models to human-aligned models (higher is better).</figcaption>
               </figure>
 
               <p>Finally, let's look at performance on <strong>dense prediction tasks</strong>: semantic segmentation and 
               depth estimation. Once again, these tasks aren't intuitively related to the image similarity objective. Nevertheless, human-aligned DINO/DINOv2 
               outperform the pretrained models in most cases!</p>
+              
               <figure class="centered-image">
                 <img src="figs/seg_results.pdf" alt="Description of the image" class="datasets-im">
-              <figcaption>Your image caption here (optional)</figcaption>
+              <figcaption>Results on semantic segmentation datasets for DINO and DINOv2.</figcaption>
               </figure>
 
               <figure class="centered-image">
                 <img src="figs/depth_results.pdf" alt="Description of the image" class="datasets-im">
-              <figcaption>Your image caption here (optional)</figcaption>
+              <figcaption>Results on a depth estimation dataset for DINO and DINOv2 (more results in our paper).</figcaption>
               </figure>
-              <!--  -- this could be due to the presence of triplets
-            with object-count variation in NIGHTS.  -->
               
             <h2 id="section5">What are the limitations of perceptual alignment?</h2>
             <p>We've shown that human-aligned representations transfer better to a variety of global and dense prediction tasks. Are there 
@@ -144,8 +143,18 @@
             </p>
 
             <h2 id="section6">Implications</h2>
-            <p><strong>Some conclusions/discussion</strong></p>
-            <p>For more details, results, and discussion, check out our paper!</p>
+            <p>In this post we showed that models that are aligned to human perceptual judgements aren't just better at predicting image similarity, they actually 
+            capture knowledge useful to an array of different downstream tasks. Interestingly, training on NIGHTS (mid-level similarity) in particular leads to 
+            improvements, much more so than other perceptual datasets like BAPPS and THINGS.</p>
+
+            <p>We hope that this work opens up lots of interesting questions for future research. We investigate aligned representations through their competency at transfer tasks, 
+              but are there other ways of understanding what changes? Can we align models in a way that alleviates the limitations we found, but preserves the benefits? </p>
+
+            <p><strong>For more details, results, and discussion, check out our paper!</strong></p>
+
+            <h2 id="section7">Models and code</h2>
+            <p>To try out our human-aligned models, otherwise known as the <strong>DreamSim</strong> models, head over to the <a href="https://github.com/ssundaram21/dreamsim">DreamSim repo</a> and/or 
+              install our package with <code>pip install dreamsim</code>. You'll also find a pipeline for fine-tuning on the NIGHTS dataset.</p>
         </main>
     </div>
 </body>
