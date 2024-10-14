@@ -1,0 +1,147 @@
+body {
+  font-family: 'Avenir', sans-serif;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9; /* Light background for less strain */
+  color: #333; /* Standard text color */
+}
+
+.container {
+  display: flex; /* Flex layout for TOC and main content */
+  max-width: 1200px; /* Optional: Set max width for the container */
+  margin: 0 auto; /* Center the container */
+}
+
+.toc {
+  width: 250px; /* Fixed width for TOC */
+  margin: 2rem 1rem; /* Margin around TOC */
+  background: #e3f2fd; /* Light blue background for TOC */
+  padding: 1rem;
+  border-left: 4px solid #154273; /* Muted blue border */
+  color: #333; /* Standard text color for contrast */
+  font-size: 1.1rem;
+  max-height: 50vh; /* Set a maximum height (e.g., 80% of the viewport height) */
+  overflow-y: auto; /* Enable vertical scrolling when content exceeds max height */
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin-bottom: 1.0rem;
+}
+
+.toc a {
+  text-decoration: none;
+  color: #154273; /* Muted dark blue links */
+}
+
+.toc a:hover {
+  color: #0a1f44; /* Darker blue on hover */
+}
+
+main {
+  flex: 1; /* Take remaining space */
+  margin: 2rem; /* Margin around main content */
+  background: #fff; /* Light background for content */
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+  background-color: #091e34; /* Darker muted blue banner */
+  color: #d3dce6; /* Softer, light blue text */
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.author-info {
+  margin-top: 1rem;
+}
+
+.author-info p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #aeb8c5; /* Muted gray-blue for author info */
+}
+
+.buttons {
+  margin-top: 1rem;
+}
+
+.button {
+  background-color: #154273; /* Muted, darker blue for buttons */
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #11365a; /* Even darker blue on hover */
+}
+
+h2 {
+  margin-top: 1.5rem;
+  color: #0a1f44; /* Dark muted blue for headings */
+  font-weight: bold; /* Set font weight to bold */
+}
+
+p {
+  font-size: 1.1rem;
+  font-weight: normal; /* Ensure normal weight for paragraph text */
+}
+
+blockquote {
+  font-style: italic;
+  background: #f1f1f1; /* Light background for blockquotes */
+  padding: 1rem;
+  border-left: 4px solid #154273; /* Muted blue blockquote border */
+  color: #333; /* Standard text color */
+}
+
+figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: #666; /* Standard caption color */
+}
+
+.section-image {
+  width: 70%; /* Forces the image to take the full width of its container */
+  height: auto; /* Maintains the aspect ratio */
+  margin: 0 auto; /* Centers the image horizontally */
+  display: block; /* Ensures the image behaves like a block element */
+  border-radius: 8px; /* Optional: adds rounded corners to the image */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+.datasets-im {
+  width: 80%; /* Forces the image to take the full width of its container */
+  height: auto; /* Maintains the aspect ratio */
+  margin: 0 auto; /* Centers the image horizontally */
+  display: block; /* Ensures the image behaves like a block element */
+  border-radius: 8px; /* Optional: adds rounded corners to the image */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+.interactive {
+  margin-top: 2rem;
+}
+
+#interactive-visualization {
+  height: 300px;
+  background: #e3f2fd; /* Light blue background for the interactive section */
+}

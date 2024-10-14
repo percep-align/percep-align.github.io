@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When does perceptual alignment benefit vision representations?</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Make sure this path is correct -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <h1>When does perceptual alignment benefit vision representations?</h1>
+        <div class="author-info">
+            <p>Shobhita Sundaram*, Stephanie Fu*, Lukas Muttenthaler, Netanel Tamir, Lucy Chai, Simon Kornblith, Trevor Darrell, Phillip Isola</p>
+            <div class="buttons">
+                <a href="#" class="button">Paper</a>
+                <a href="#" class="button">Code</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container"> <!-- This container holds both the TOC and main content -->
+        <aside class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#section1">Introduction</a></li>
+                <li><a href="#section2">What is the purpose of perceptual alignment?</a></li>
+                <li><a href="#section3">How do we align vision models?</a></li>
+                <li><a href="#section4">What are the benefits of perceptual alignment?</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h2 id="section1">Introduction</h2>
+            <figure class="centered-image">
+              <img src="figs/teaser5.pdf" alt="Description of the image" class="section-image">
+              <figcaption>Your image caption here (optional)</figcaption>
+          </figure>
+
+            <p><em>What does it mean for machines to see the world as humans do?</em>
+
+            <p>Our sense of similarity is crucial to how we perceive and navigate the world. Think about the rich set of factors 
+              that you notice when judging similarity: layout, color, perspective, semantics, and more. We reason about 
+              concepts and scenes, and group them together, largely based on how similar we perceive these visual characteristics to be.</p>
+              
+              <p>While vision models have become impressively capable, they still often don't align to human judgements 
+                of visual similarity. In the language domain, we have already seen the power of aligning LLMs to human feedback; 
+                models fine-tuned with RLHF are easier for humans to interact with, predict, and interpret. But what are 
+                the effects of alignment in vision?</p>
+              
+                <p>In this paper, we ask: Are models that "see" like humans better at just specific tasks -- 
+                  such as predicting image similarity -- or are they actually better general-purpose representations?</p>
+            
+            <h2 id="section2">What is the purpose of perceptual alignment?</h2>
+            <p>One way to understand representations is as similarity structures: embeddings are meaningful precisely 
+              because of their similarity to other embeddings in the high-dimensional feature space. Likewise, an 
+              understanding of the visual similarities between images and concepts is critical to human perception. 
+              <em>Perceptual alignment</em> imposes the constraint that images should be close to each other if humans judge them 
+              to be visually similar. In doing so, it aligns the representation's similarity structure to that of human 
+              perception.</p>
+
+              <p>Here, we ask: <strong>Does this alignment lead to better general-purpose representations?</strong></p>
+              
+            <h2 id="section3">How do we align vision models?</h2>
+            <p>At a high level, we can align vision models to human perception by fine-tuning them on human similarity 
+              judgements from the NIGHTS dataset. NIGHTS contains 20k synthetic image triplets, annotated with perceptual 
+              similarity judgements. Compared to other datasets (see below) the triplets in NIGHTS contain a rich set of 
+              mid-level variations, such as color, style, pose, and object count.</p>
+              <figure class="centered-image">
+                <img src="figs/data_examples.pdf" alt="Description of the image" class="datasets-im">
+                <figcaption>Your image caption here (optional)</figcaption>
+            </figure>
+              <p>More precisely: We formalize this dataset as  \(\mathcal{D}=\{(x, \tilde{x_0}, \tilde{x_1}), y\}\) where
+              \(x\) is a reference image, and \(\tilde{x_0}\) and \(\tilde{x_1}\) are two variation images. The judgement 
+              \(y \in \{0,1\}\) indicates which of \(\tilde{x_0}\) and \(\tilde{x_1}\) is more similar to \(x\). </p>
+              
+              <p>Given a pre-trained backbone \(f_{\theta}\), we measure the distance between two images \((x,\tilde{x_0})\) 
+                using the cosine distance between their respective image features \((f_{\theta}(x),f_{\theta}(\tilde{x_0}))\). 
+                We fine-tune on \(\mathcal{D}\) using a simple triplet loss that encourages a low (high) cosine distance between 
+                the more similar (dissimilar) pairs.</p>
+
+              <p>Using this procedure, we can fine-tune both the global and patch-level features of \(f_{\theta}\) 
+                (see our paper for more details). We can think about this as a "second pre-training stage". 
+                The next step is to see if the fine-tuned representations transfer better to standard downstream tasks.</p>
+              
+              <h2 id="section4">What are the benefits of perceptual alignment?</h2>
+              <p>How do human-aligned models perform against non-aligned, pretrained models as general-purpose representations? 
+                We answer this by evaluating transfer performance on several common vision benchmarks. </p>
+
+                <p>First, let's take a look at how human-aligned (-HA) models perform on <em>dense prediction tasks</em>.</p>
+
+                <strong>Show segmentation/depth estimation results in some way. Tables? Feels like could be clunky.</strong>
+
+                <p>Human-aligned models also boost performance on several <em>global understanding tasks:</em> counting, instance retrieval, and retrieval-augmented generation.</p>
+                <figure class="centered-image">
+                  <img src="figs/combined_scatter.pdf" alt="Description of the image" class="datasets-im">
+                <figcaption>Your image caption here (optional)</figcaption>
+        </main>
+    </div>
+</body>
+</html>
