@@ -13,16 +13,19 @@ body {
   margin: 0 auto; /* Center the container */
 }
 
+/* TOC Styling */
 .toc {
   width: 250px; /* Fixed width for TOC */
   margin: 2rem 1rem; /* Margin around TOC */
-  background: #e3f2fd; /* Light blue background for TOC */
+  background: #f1f1f1; /* Light blue background for TOC */
   padding: 1rem;
   border-left: 4px solid #154273; /* Muted blue border */
   color: #333; /* Standard text color for contrast */
   font-size: 1.1rem;
-  max-height: 50vh; /* Set a maximum height (e.g., 80% of the viewport height) */
-  overflow-y: auto; /* Enable vertical scrolling when content exceeds max height */
+  height: auto;
+  /* max-height: 90vh; */
+  /* max-height: 50vh; Set a maximum height (e.g., 80% of the viewport height) */
+  /* overflow-y: auto; Enable vertical scrolling when content exceeds max height */
 }
 
 .toc ul {
@@ -63,6 +66,17 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
+header h2 {
+  font-size: 2.0rem;
+  margin-top: 0.0rem;
+  margin-bottom: 0.0rem;
+  font-weight: normal;
+}
+
+header h2 {
+  color: #d3dce6; /* Softer, light blue text */
+}
+
 .author-info {
   margin-top: 1rem;
 }
@@ -73,12 +87,26 @@ header h1 {
   color: #aeb8c5; /* Muted gray-blue for author info */
 }
 
+#asterisk {
+  font-size: 1.0rem;
+  font-style: italic;
+}
+
 .buttons {
   margin-top: 1rem;
 }
 
 .button {
   background-color: #154273; /* Muted, darker blue for buttons */
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.inactive-button {
+  background-color: #154273;
   color: white;
   padding: 0.5rem 1rem;
   margin-right: 1rem;
@@ -114,6 +142,10 @@ figure {
   text-align: center;
 }
 
+#teaser {
+  width: 95%;
+}
+
 figcaption {
   font-size: 0.9rem;
   color: #666; /* Standard caption color */
@@ -129,7 +161,7 @@ figcaption {
 }
 
 .datasets-im {
-  width: 80%; /* Forces the image to take the full width of its container */
+  width: 100%; /* Forces the image to take the full width of its container */
   height: auto; /* Maintains the aspect ratio */
   margin: 0 auto; /* Centers the image horizontally */
   display: block; /* Ensures the image behaves like a block element */
